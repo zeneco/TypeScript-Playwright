@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('Пересчёт дохода при изменении суммы вклада', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
-
+  //лучше всегда идти вниз, начиная с родителя
   const amountInput = page.getByText('Сумма вклада').locator('..').getByRole('textbox');
   const incomeHeading = page.getByText('Доход').locator('..').getByRole('heading');
 
@@ -20,4 +20,4 @@ test('Пересчёт дохода при изменении суммы вкл�
   await test.step('Проверить пересчёт дохода', async () => {
     await expect(incomeHeading).not.toHaveText(initialIncome ?? ''); //проверяем, что сумма отличается от изначальной
   });
-});
+}); 
